@@ -1,0 +1,36 @@
+{
+  "Items": [
+    {
+      "Disabled": false,
+      "Title": "AppendFormat",
+      "Pattern": "AppendFormat\\((.+)\\);",
+      "RepalceTo": "append(StringUtil.format($1));",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "Title": "String.Format",
+      "Pattern": "String\\.Format\\(",
+      "RepalceTo": "StringUtil.format(",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "Title": "%1$s",
+      "Pattern": "%(\\d+)\\$s",
+      "RepalceTo": "public static string ReplaceEach(Match m)\\r\\n{\\r\\n    string idx = m.Groups[1].Value;\\r\\n    return \"{\" + (Convert.ToInt32(idx)-1) + \"}\";\\r\\n}",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 1
+    }
+  ],
+  "Title": "csToJava",
+  "Order": 3
+}

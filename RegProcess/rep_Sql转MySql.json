@@ -1,0 +1,26 @@
+{
+  "Items": [
+    {
+      "Disabled": false,
+      "Title": "",
+      "Pattern": null,
+      "RepalceTo": null,
+      "IgnoreCase": false,
+      "Global": false,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "Title": "smalldatetime",
+      "Pattern": "smalldatetime",
+      "RepalceTo": "datetime",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    }
+  ],
+  "Title": "Sql转MySql",
+  "Order": 1
+}
