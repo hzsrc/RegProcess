@@ -1,0 +1,28 @@
+{
+  "Items": [
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "field",
+      "Pattern": "(\\w+)\\t(.+)?\\t(\\S+)?",
+      "RepalceTo": "public $3 $1 { get; set; } // $2",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "type",
+      "Pattern": "public\\s+(\\S+)",
+      "RepalceTo": "public static string ReplaceEach(Match m)\r\n{\r\n    string dbType = m.Groups[1].Value;\r\n    dbType = dbType.Split('(')[0];\r\n    string csType  = toCsType(dbType.ToLower());\r\n    return \"public \" + csType;\r\n}\r\nprivate static string toCsType(string dbType){\r\nswitch(dbType){\r\ncase \"decimal\":\r\ncase \"long\":\r\ncase \"int\": return dbType;\r\ncase \"date\":\r\ncase \"datetime\": return \"DateTime\";\r\ndefault: return \"string\";\r\n}\r\n\r\n}",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 1
+    }
+  ],
+  "Title": "Field变属性",
+  "Order": 0
+}
