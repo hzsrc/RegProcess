@@ -53,6 +53,7 @@ namespace RegProcess
             this.tbDir = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labCur = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -215,6 +216,7 @@ namespace RegProcess
             this.tabFile.Controls.Add(this.btBrowser);
             this.tabFile.Controls.Add(this.tbPattern);
             this.tabFile.Controls.Add(this.tbDir);
+            this.tabFile.Controls.Add(this.labCur);
             this.tabFile.Controls.Add(this.label2);
             this.tabFile.Controls.Add(this.label1);
             this.tabFile.Location = new System.Drawing.Point(4, 22);
@@ -232,12 +234,12 @@ namespace RegProcess
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lab.BackColor = System.Drawing.SystemColors.Control;
-            this.lab.Location = new System.Drawing.Point(12, 119);
+            this.lab.Location = new System.Drawing.Point(12, 136);
             this.lab.MaxLength = 0;
             this.lab.Multiline = true;
             this.lab.Name = "lab";
             this.lab.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.lab.Size = new System.Drawing.Size(766, 327);
+            this.lab.Size = new System.Drawing.Size(766, 310);
             this.lab.TabIndex = 3;
             this.lab.WordWrap = false;
             // 
@@ -301,6 +303,14 @@ namespace RegProcess
             this.label1.TabIndex = 0;
             this.label1.Text = "文件夹";
             // 
+            // labCur
+            // 
+            this.labCur.Location = new System.Drawing.Point(10, 121);
+            this.labCur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labCur.Name = "labCur";
+            this.labCur.Size = new System.Drawing.Size(768, 12);
+            this.labCur.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -311,6 +321,7 @@ namespace RegProcess
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "正则处理器";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -359,6 +370,7 @@ namespace RegProcess
         private Label label2;
         private Button btBat;
         private TextBox lab;
+        private Label labCur;
     }
 }
 

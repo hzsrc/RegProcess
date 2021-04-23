@@ -8,6 +8,7 @@ namespace RegProcess
     {
         public bool Disabled { get; set; }
 
+        public bool NoReg { get; set; }
         public string Title { get; set; } = "";
 
         public string Pattern { get; set; }
@@ -60,7 +61,12 @@ namespace RegProcess
             {
                 if (RepType == RepType.CS_Code)
                 {
-                    MethodInfo mi = CsCache.Unique.GetMethod(this, IsFeatureChanged());
+                    var changed = IsFeatureChanged();
+                    MethodInfo mi = CsCache.Unique.GetMethod(this, changed);
+                    if (changed)
+                    {
+                        ResetFeature(); //For BuidReg()
+                    }
                     return BuildReg().Replace(s, (Match match) => Convert.ToString(mi.Invoke(null, new object[1]
                     {
                         match
@@ -70,11 +76,14 @@ namespace RegProcess
             }
             return s;
         }
-
+        internal void ResetFeature()
+        {
+            _lastFeature = "";
+        }
         public bool IsFeatureChanged()
         {
             string feature = RepType + "," + IgnoreCase + "," + Global + "," + Boundary + "," + Pattern;
-            if (_reg ==null || feature != _lastFeature)
+            if (_reg == null || feature != _lastFeature)
             {
                 _lastFeature = feature;
                 return true;
@@ -84,6 +93,11 @@ namespace RegProcess
         public override int GetHashCode()
         {
             return RepalceTo.GetHashCode();
+        }
+
+        internal RepItem Clone()
+        {
+            return MemberwiseClone() as RepItem;
         }
     }
 }

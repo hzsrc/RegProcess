@@ -53,6 +53,7 @@ namespace RegProcess
             this.chkGlobal = new System.Windows.Forms.CheckBox();
             this.chkCase = new System.Windows.Forms.CheckBox();
             this.tbResult = new System.Windows.Forms.TextBox();
+            this.chkNoReg = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -202,6 +203,7 @@ namespace RegProcess
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.chkNoReg);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             this.splitContainer3.Panel1.Controls.Add(this.tbPattern);
             // 
@@ -235,11 +237,11 @@ namespace RegProcess
             this.tbPattern.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPattern.Location = new System.Drawing.Point(3, 18);
+            this.tbPattern.Location = new System.Drawing.Point(3, 24);
             this.tbPattern.Multiline = true;
             this.tbPattern.Name = "tbPattern";
             this.tbPattern.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbPattern.Size = new System.Drawing.Size(267, 226);
+            this.tbPattern.Size = new System.Drawing.Size(267, 220);
             this.tbPattern.TabIndex = 1;
             this.tbPattern.WordWrap = false;
             this.tbPattern.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -249,11 +251,11 @@ namespace RegProcess
             this.tbReplace.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbReplace.Location = new System.Drawing.Point(3, 18);
+            this.tbReplace.Location = new System.Drawing.Point(3, 24);
             this.tbReplace.Multiline = true;
             this.tbReplace.Name = "tbReplace";
             this.tbReplace.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbReplace.Size = new System.Drawing.Size(347, 226);
+            this.tbReplace.Size = new System.Drawing.Size(347, 220);
             this.tbReplace.TabIndex = 1;
             this.tbReplace.WordWrap = false;
             this.tbReplace.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -379,6 +381,17 @@ namespace RegProcess
             this.tbResult.TabIndex = 1;
             this.tbResult.WordWrap = false;
             // 
+            // chkNoReg
+            // 
+            this.chkNoReg.AutoSize = true;
+            this.chkNoReg.Location = new System.Drawing.Point(137, 3);
+            this.chkNoReg.Name = "chkNoReg";
+            this.chkNoReg.Size = new System.Drawing.Size(132, 16);
+            this.chkNoReg.TabIndex = 3;
+            this.chkNoReg.Text = "文本替换（非正则）";
+            this.chkNoReg.UseVisualStyleBackColor = true;
+            this.chkNoReg.CheckedChanged += new System.EventHandler(this.chkNoReg_CheckedChanged);
+            // 
             // FmCfg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -437,5 +450,6 @@ namespace RegProcess
         private System.Windows.Forms.ToolStripButton toolNewRepItem;
         private CheckBox chkDisabled;
         private Button btCsSample;
+        private CheckBox chkNoReg;
     }
 }

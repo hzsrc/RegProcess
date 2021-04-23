@@ -70,6 +70,7 @@ namespace RegProcess
                 item.RepalceTo = tbReplace.Text;
                 item.RepType = rdCSharp.Checked ? RepType.CS_Code : RepType.Direct;
                 item.Title = cfgTree.SelectedNode.Text;
+                item.NoReg = chkNoReg.Checked;
                 cfgTree.SelectedNode.ForeColor = item.Disabled ? Color.Silver : SystemColors.ControlText;
             }
         }
@@ -140,7 +141,11 @@ namespace RegProcess
             {
                 try
                 {
-                    tbResult.Text = (cfgTree.SelectedNode.Tag as RepItem).Replace(_fm.SrcTextBox.Text);
+                    var repItem = (cfgTree.SelectedNode.Tag as RepItem);//.Clone();
+                    //cfgTree.SelectedNode.Tag = repItem;
+                    repItem.ResetFeature();
+                    //SyncItems(cfgTree.SelectedNode);
+                    tbResult.Text = repItem.Replace(_fm.SrcTextBox.Text);
                 }
                 catch (Exception ex)
                 {
@@ -284,40 +289,65 @@ namespace RegProcess
 
         private void cfgTree_DragDrop(object sender, DragEventArgs e)
         {
-            TreeNode treeNode;
+            //获取被拖动的节点
+            TreeNode treeNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
+
             //获取当前鼠标所处的位置，并将它赋值给全局变量point
             Point point = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
             //根据坐标点取得坐标点处的Node节点
             //拖放的目标节点
             TreeNode targetTreeNode = ((TreeView)sender).GetNodeAt(point);
-            //获取被拖动的节点
-            treeNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
-            //判断被拖动的节点与目标节点是否为同一个节点，是则不予处理
-            if (treeNode != targetTreeNode)
+            TreeNode parent = targetTreeNode.Parent;
+            int index = targetTreeNode.Index + 1;
+            TreeNode node = (TreeNode)treeNode.Clone();
+            node.Tag = JSON.Parse<RepItem>(JSON.Stringify(treeNode.Tag));
+            //同一项目
+            if (targetTreeNode.Parent == treeNode.Parent)
             {
-                TreeNode node = (TreeNode)treeNode.Clone();
-                node.Tag = treeNode.Tag;
-                int index = targetTreeNode.Index + 1;
+                //判断被拖动的节点与目标节点是否为同一个节点，是则不予处理
+                if (treeNode != targetTreeNode)
+                {
 
-                TreeNode parent = targetTreeNode.Parent;
-                if (parent != null)
-                {
-                    parent.Nodes.Insert(index, node);
-                    //移除拖动节点
-                    treeNode.Remove();
-                    (parent.Tag as RepBatch).Items = parent.Nodes.Cast<TreeNode>().Select(n => n.Tag as RepItem).ToList();
-                }
-                else
-                {
-                    cfgTree.Nodes.Insert(index, node);
-                    //移除拖动节点
-                    treeNode.Remove();
-                    for (int i = 0; i < cfgTree.Nodes.Count; i++)
+                    if (parent != null) //子节点
                     {
-                        _batches[i] = cfgTree.Nodes[i].Tag as RepBatch;
-                        _batches[i].Order = i;
+                        parent.Nodes.Insert(index, node);
+                        //移除拖动节点
+                        treeNode.Remove();
+                    }
+                    else // 根节点
+                    {
+                        cfgTree.Nodes.Insert(index, node);
+                        //移除拖动节点
+                        treeNode.Remove();
                     }
                 }
+            }
+            else
+            {
+                if (parent != null) //子节点
+                {
+                    targetTreeNode.Parent.Nodes.Insert(index, node);
+                }
+                else
+                { // 根节点
+
+                    targetTreeNode.Nodes.Insert(targetTreeNode.Nodes.Count, node);
+                }
+            }
+
+            SyncItems(targetTreeNode);
+        }
+
+        private void SyncItems(TreeNode targetTreeNode)
+        {
+            TreeNode parent = targetTreeNode.Parent;
+            var pNode = parent == null ? targetTreeNode : parent;
+            (pNode.Tag as RepBatch).Items = pNode.Nodes.Cast<TreeNode>().Select(n => n.Tag as RepItem).ToList();
+
+            for (int i = 0; i < cfgTree.Nodes.Count; i++)
+            {
+                _batches[i] = cfgTree.Nodes[i].Tag as RepBatch;
+                _batches[i].Order = i;
             }
         }
 
@@ -362,6 +392,7 @@ namespace RegProcess
                     }
                 }
             }
+            CsCache.Unique.Clear();
         }
 
         private bool HasChanged()
@@ -380,10 +411,24 @@ namespace RegProcess
             //根据坐标点取得坐标点处的Node节点
             //拖放的目标节点
             TreeNode targetTreeNode = ((TreeView)sender).GetNodeAt(point);
+            var dragNode = e.Data.GetData("System.Windows.Forms.TreeNode") as TreeNode;
 
-            var isOK = cfgTree.SelectedNode != null && targetTreeNode != null
-                && targetTreeNode.Parent == cfgTree.SelectedNode.Parent;
-            e.Effect = isOK ? DragDropEffects.Move : DragDropEffects.None;
+            var isOK = dragNode != null && targetTreeNode != null;
+            if (!isOK)
+            {
+                e.Effect = DragDropEffects.None;
+            }
+            else
+            {
+                var isSameBat = targetTreeNode.Parent == dragNode.Parent;
+                if (isSameBat) e.Effect = DragDropEffects.Move;
+                else e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void chkNoReg_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeNodeCfg();
         }
     }
 }

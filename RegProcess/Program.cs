@@ -16,7 +16,7 @@ namespace RegProcess
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(e.Exception.Message+e.Exception.StackTrace, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

@@ -50,6 +50,19 @@ namespace RegProcess
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadConfig();
+            LoadForm();
+        }
+
+        private void LoadForm()
+        {
+            try
+            {
+                var s = File.ReadAllText("laststate.cfg").Split(new String[] { "\r\n" }, StringSplitOptions.None);
+                tComboBox.SelectedIndex = Convert.ToInt32(s[2]);
+                tbDir.Text = s[0];
+                tbPattern.Text = s[1];
+            }
+            catch { }
         }
 
         private void ClearItems()
@@ -116,26 +129,44 @@ namespace RegProcess
         private void btBat_Click(object sender, EventArgs e)
         {
             lab.Text = "";
+            labCur.Text = "";
+            Application.DoEvents();
             var bat = _batches[tComboBox.SelectedIndex];
             EnumFiles(tbDir.Text, tbPattern.Text, file =>
             {
-                string content = File.ReadAllText(file, Encoding.UTF8);
+                labCur.Text = file;
+                var textEnc = new TextEncode();
+                string content = textEnc.ReadText(file);
                 string result = bat.ReplaceBat(content);
-                File.WriteAllText(file, result, Encoding.UTF8);
-                lab.AppendText(file);
+                if (content != result)
+                {
+                    textEnc.WriteBySameEncoding(file, result);
+                    lab.AppendText(file + "\r\n");
+                }
                 Application.DoEvents();
             });
+            labCur.Text = "";
             lab.AppendText("Done!");
         }
-        private void EnumFiles(string dir, string pattern, Action<string> cb)
+
+        private void SaveForm()
         {
-            foreach (var file in Directory.GetFiles(dir, pattern))
+            string[] s = new string[] { tbDir.Text, tbPattern.Text, tComboBox.SelectedIndex.ToString() };
+            File.WriteAllText("laststate.cfg", String.Join("\r\n", s));
+        }
+
+        private void EnumFiles(string dir, string patterns, Action<string> cb)
+        {
+            foreach (string pattern in patterns.Split(';'))
             {
-                cb(file);
+                foreach (var file in Directory.GetFiles(dir, pattern))
+                {
+                    cb(file);
+                }
             }
             foreach (var sub in Directory.GetDirectories(dir))
             {
-                EnumFiles(sub, pattern, cb);
+                EnumFiles(sub, patterns, cb);
             }
         }
 
@@ -143,6 +174,11 @@ namespace RegProcess
         {
             tabs.SelectedTab = tabText;
             tbSrc.Focus();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveForm();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -29,6 +30,11 @@ namespace RegProcess
 
         private CsCache()
         {
+        }
+
+        internal void Clear()
+        {
+            _objs.Clear();
         }
     }
 }
