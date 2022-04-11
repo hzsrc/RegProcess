@@ -18,9 +18,12 @@ public class TextEncode
     }
     public string ReadText(string fileName)
     {
+        return ReadText(File.ReadAllBytes(fileName));
+    }
+    public string ReadText(byte[] bytes)
+    {
+        if (bytes == null) return null;
         Encoding encoding = null;
-
-        byte[] bytes = File.ReadAllBytes(fileName);
 
         int bomLen = 0;
         if (bytes.Length > 1)
