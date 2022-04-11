@@ -1,0 +1,160 @@
+{
+  "Items": [
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "nvarchar",
+      "Pattern": "nvarchar",
+      "RepalceTo": "varchar",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "@@identity",
+      "Pattern": "@@identity",
+      "RepalceTo": "LAST_INSERT_ID()",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "text",
+      "Pattern": "\\bvarchar\\(max\\)",
+      "RepalceTo": "text",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "identity",
+      "Pattern": "identity",
+      "RepalceTo": "AUTO_INCREMENT",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "bit",
+      "Pattern": "bit",
+      "RepalceTo": "int",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "smalldatetime",
+      "Pattern": "smalldatetime",
+      "RepalceTo": "datetime",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "go",
+      "Pattern": "\\r?\\ngo",
+      "RepalceTo": ";\r\n",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "--",
+      "Pattern": "\\-\\-(\\S)",
+      "RepalceTo": "-- $1",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "proc",
+      "Pattern": "proc",
+      "RepalceTo": "procedure",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "@",
+      "Pattern": "@(\\w+)\\b",
+      "RepalceTo": "v_$1",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "isnull",
+      "Pattern": "isnull",
+      "RepalceTo": "ifnull",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "DATEDIFF",
+      "Pattern": "\\bDATEDIFF\\(\\s*(\\w+)",
+      "RepalceTo": "sfn_DateBetween('$1'",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "output",
+      "Pattern": "(v_retval.+)out(put)?",
+      "RepalceTo": "out $1",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "cast",
+      "Pattern": "\\b(cast\\(.+?\\sAS\\s+)n?varchar",
+      "RepalceTo": "$1char",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    }
+  ],
+  "Title": "sql2mysql",
+  "Order": 7
+}

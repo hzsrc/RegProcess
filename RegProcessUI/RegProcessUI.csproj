@@ -101,16 +101,26 @@
     <None Include="rep_csToJava.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="rep_Field变属性-Java.json" />
     <None Include="rep_Field变属性.json" />
+    <None Include="rep_java2cs.json" />
+    <None Include="rep_setPro.json" />
+    <None Include="rep_sql2mysql.json" />
     <None Include="rep_SqlServer脚本转Oracle.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="rep_Sql转MySql.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="rep_svn日志处理.json" />
+    <None Include="rep_tmp.json" />
     <None Include="rep_多行文本.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="sln-AppPlus.json" />
+    <None Include="sln-FileSeverV9.json" />
+    <None Include="sln-RestCall.json" />
+    <None Include="sln-V9.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegProcess\RegProcess.csproj">

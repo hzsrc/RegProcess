@@ -846,8 +846,30 @@
       "Global": true,
       "Boundary": false,
       "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "OrderedDict",
+      "Pattern": "\\bOrderedDict\\b",
+      "RepalceTo": "LinkedHashMap",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "ActionResult",
+      "Pattern": "public ActionResult",
+      "RepalceTo": "public ResponseEntity<?>",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
     }
   ],
   "Title": "csToJava",
-  "Order": 3
+  "Order": 6
 }

@@ -1,0 +1,116 @@
+{
+  "Items": [
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "com.kayang",
+      "Pattern": "com\\.kayang",
+      "RepalceTo": "Kayang",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "方法名",
+      "Pattern": "\\.[a-z]",
+      "RepalceTo": "public static string ReplaceEach(Match m)\r\n{\r\n    string src = m.Value;\r\n    return \".\" + src[1].ToString().ToUpper();\r\n}",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 1
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "getXXX",
+      "Pattern": "get(\\w+)\\(\\)",
+      "RepalceTo": "$1",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "import",
+      "Pattern": "import (.+;)",
+      "RepalceTo": "using $1",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "package",
+      "Pattern": "package (.+);(\\r?\\n[\\s\\S]+)$",
+      "RepalceTo": "namespace $1 {$2\r\n}",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "for",
+      "Pattern": "for\\s*\\((.+):(.+)\\)",
+      "RepalceTo": "foreach ($1in$2)",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "setXXX",
+      "Pattern": "set(\\w+)\\((.+)\\);",
+      "RepalceTo": "$1 = $2;",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "boolean",
+      "Pattern": "boolean",
+      "RepalceTo": "bool",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "instanceof",
+      "Pattern": "instanceof",
+      "RepalceTo": "is",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "ArrayList",
+      "Pattern": "ArrayList",
+      "RepalceTo": "List",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": true,
+      "RepType": 0
+    }
+  ],
+  "Title": "java2cs",
+  "Order": 1
+}

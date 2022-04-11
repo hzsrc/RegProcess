@@ -4,12 +4,12 @@
       "Disabled": false,
       "NoReg": false,
       "Title": "field",
-      "Pattern": "(\\w+)\\t(.+)?\\t(\\S+)?",
-      "RepalceTo": "public $3 $1 { get; set; } // $2",
+      "Pattern": "(\\w+)\\t([^\\r\\n]+)?\\t?(\\S+)?\\r?\\n?",
+      "RepalceTo": "public static string ReplaceEach(Match m)\r\n{\r\n    string src = m.Value;\r\n    if (m.Groups[3].Value == \"\")\r\n    {\r\n        return \"public \"+m.Groups[2].Value+\" \"+m.Groups[1].Value+@\" { get; set; }\r\n\";\r\n    }\r\n    else\r\n    {\r\n        return \"public \"+m.Groups[3].Value+\" \"+m.Groups[1].Value+\" { get; set; } // \"+m.Groups[2].Value+@\"\r\n\";\r\n    }\r\n}",
       "IgnoreCase": false,
       "Global": true,
       "Boundary": false,
-      "RepType": 0
+      "RepType": 1
     },
     {
       "Disabled": false,
@@ -24,5 +24,5 @@
     }
   ],
   "Title": "Field变属性",
-  "Order": 0
+  "Order": 2
 }

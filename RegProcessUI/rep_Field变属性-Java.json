@@ -1,0 +1,28 @@
+{
+  "Items": [
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "field",
+      "Pattern": "(\\w+)\\t([^\\r\\n]+)?\\t?(\\S+)?\\r?\\n?",
+      "RepalceTo": "public static string ReplaceEach(Match m)\r\n{\r\n    string src = m.Value;\r\n    if (m.Groups[3].Value == \"\")\r\n    {\r\n        return \"public \"+m.Groups[2].Value+\" \"+m.Groups[1].Value.ToLower()+@\";\r\n\";\r\n    }\r\n    else\r\n    {\r\n        return \"public \"+m.Groups[3].Value+\" \"+m.Groups[1].Value.ToLower()+\"; // \"+m.Groups[2].Value+@\"\r\n\";\r\n    }\r\n}",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 1
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "type",
+      "Pattern": "public\\s+(\\S+)",
+      "RepalceTo": "public static string ReplaceEach(Match m)\r\n{\r\n    string dbType = m.Groups[1].Value;\r\n    dbType = dbType.Split('(')[0];\r\n    string csType  = toCsType(dbType.ToLower());\r\n    return \"public \" + csType;\r\n}\r\nprivate static string toCsType(string dbType){\r\nswitch(dbType){\r\ncase \"decimal\":\r\ncase \"long\":\r\ncase \"int\": return dbType;\r\ncase \"date\":\r\ncase \"datetime\": return \"LocalDateTime\";\r\ndefault: return \"String\";\r\n}\r\n\r\n}",
+      "IgnoreCase": false,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 1
+    }
+  ],
+  "Title": "Field变属性-Java",
+  "Order": 0
+}
