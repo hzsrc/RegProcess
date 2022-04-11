@@ -112,15 +112,9 @@
     <None Include="rep_Sql转MySql.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="rep_svn日志处理.json" />
-    <None Include="rep_tmp.json" />
     <None Include="rep_多行文本.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="sln-AppPlus.json" />
-    <None Include="sln-FileSeverV9.json" />
-    <None Include="sln-RestCall.json" />
-    <None Include="sln-V9.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegProcess\RegProcess.csproj">
