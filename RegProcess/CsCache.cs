@@ -32,7 +32,7 @@ namespace RegProcess
         {
         }
 
-        internal void Clear()
+        public void Clear()
         {
             _objs.Clear();
         }

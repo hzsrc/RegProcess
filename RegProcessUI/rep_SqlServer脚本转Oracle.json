@@ -2,6 +2,7 @@
   "Items": [
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "int改Number(10)",
       "Pattern": "int",
       "RepalceTo": "integer",
@@ -12,6 +13,18 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
+      "Title": "[]",
+      "Pattern": "\\[(\\w+)\\]",
+      "RepalceTo": "$1",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
       "Title": "decimal改number",
       "Pattern": "decimal",
       "RepalceTo": "number",
@@ -22,6 +35,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "numeric改number",
       "Pattern": "numeric",
       "RepalceTo": "number",
@@ -32,6 +46,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "改proc",
       "Pattern": "(create|alter|Replace)\\s+proc",
       "RepalceTo": "$1 Procedure",
@@ -42,6 +57,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "改varchar2",
       "Pattern": "varchar",
       "RepalceTo": "varchar2",
@@ -52,9 +68,10 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "改nvarchar2",
       "Pattern": "nvarchar",
-      "RepalceTo": "nvarchar2",
+      "RepalceTo": "varchar2",
       "IgnoreCase": true,
       "Global": true,
       "Boundary": true,
@@ -62,6 +79,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "bit改number(1)",
       "Pattern": "bit",
       "RepalceTo": "number(1)",
@@ -72,6 +90,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "ntext改clob",
       "Pattern": "ntext",
       "RepalceTo": "clob",
@@ -82,6 +101,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "varbinary改blob",
       "Pattern": "varbinary",
       "RepalceTo": "blob",
@@ -92,6 +112,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "??",
       "Pattern": "(?<=create(?:\\s+or\\s+replace)?\\s+(proc(?:edure)?|function)[\\s\\S]+)\\(\\d+\\)(?=\\s*=)",
       "RepalceTo": ":",
@@ -102,6 +123,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "??",
       "Pattern": "(?<=create(?:\\s+or\\s+replace)?\\s+(proc(?:edure)?|function)[\\s\\S]+)\\(\\d+\\)(?=\\s*[,\\)=])",
       "RepalceTo": "",
@@ -112,6 +134,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "??",
       "Pattern": "(?<=create\\s+table[\\s\\S]+)((?:not\\s+)?null)\\s+(default\\s+.+)([,\\)])",
       "RepalceTo": "$2 $1$3",
@@ -122,6 +145,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "set改:=",
       "Pattern": "\\bset\\s+@(\\w+)\\s*=",
       "RepalceTo": "v_$1 := ",
@@ -132,6 +156,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "@改v_",
       "Pattern": "@(\\w+)",
       "RepalceTo": "v_$1",
@@ -142,6 +167,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "N'改'",
       "Pattern": "\\bN'",
       "RepalceTo": "'",
@@ -152,6 +178,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "go改/",
       "Pattern": "(\\r\\n)go(\\r\\n)",
       "RepalceTo": "$1/$2",
@@ -162,6 +189,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "exec改Begin..End",
       "Pattern": "(?<!\\s*--.*)\\bexec(ute)?\\s+(\\w+)\\s+(.+)(\\r\\n)",
       "RepalceTo": "Begin$4$2($3);$4End;$4",
@@ -172,6 +200,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "加分号1",
       "Pattern": "([^;\\s])(\\s+)/",
       "RepalceTo": "$1;$2/",
@@ -182,6 +211,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "加分号2",
       "Pattern": "End(\\r\\n)",
       "RepalceTo": "End;$1",
@@ -192,6 +222,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "proc参数加括号",
       "Pattern": "(create(?:\\s+or\\s+replace)?\\s+proc(?:edure)?\\s+\\w+)(?!\\s*\\()(\\s+[\\s\\S]+?)as",
       "RepalceTo": "$1($2)as",
@@ -202,6 +233,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "+改||",
       "Pattern": "\\+",
       "RepalceTo": "||",
@@ -212,6 +244,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "insert加into",
       "Pattern": "insert(?!\\s+into)",
       "RepalceTo": "insert into",
@@ -222,6 +255,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "create改Create Or Replace",
       "Pattern": "create(?:\\s+or\\s+replace)?(\\s+(proc(?:edure)?|function|view|trigger))",
       "RepalceTo": "Create Or Replace$1",
@@ -232,6 +266,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "去行尾tab",
       "Pattern": "[ \\t]+(\\r\\n)",
       "RepalceTo": " $1",
@@ -242,6 +277,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "改cursor",
       "Pattern": "declare\\s+(\\w+)\\s+cursor\\s+for",
       "RepalceTo": "Declare Cursor $1 Is",
@@ -252,6 +288,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "函数：",
       "Pattern": "",
       "RepalceTo": "",
@@ -262,6 +299,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "isnull改Nvl",
       "Pattern": "isnull",
       "RepalceTo": "Nvl",
@@ -272,6 +310,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "=改is null",
       "Pattern": "(\\w+)\\s*=\\s*''",
       "RepalceTo": "$1 is null",
@@ -282,6 +321,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "=改is null2改",
       "Pattern": "(\\w+)\\s*(<>|!=)\\s*''",
       "RepalceTo": "$1 is not null",
@@ -292,6 +332,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "尝试创建表",
       "Pattern": "(?<!TryExec\\('\\r\\n)(Create\\s+(?:Table|SEQUENCE)[\\s\\S]+?);\\s*\\r\\n(/|go)",
       "RepalceTo": "Begin\\r\\nTryExec('\\r\\n$1'\\r\\n);\\r\\nEnd;\\r\\n/",
@@ -302,9 +343,32 @@
     },
     {
       "Disabled": false,
-      "Title": "[]",
-      "Pattern": "\\[(\\w+)\\]",
-      "RepalceTo": "$1",
+      "NoReg": false,
+      "Title": "nv2clob",
+      "Pattern": "varchar2\\(max\\)",
+      "RepalceTo": "clob",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "vb2blob",
+      "Pattern": "varbinary\\(max\\)",
+      "RepalceTo": "clob",
+      "IgnoreCase": true,
+      "Global": true,
+      "Boundary": false,
+      "RepType": 0
+    },
+    {
+      "Disabled": false,
+      "NoReg": false,
+      "Title": "select into",
+      "Pattern": "(\\w+)\\s*:?=\\s*(\\w+)(?=.*from)",
+      "RepalceTo": "$2 into $1",
       "IgnoreCase": true,
       "Global": true,
       "Boundary": false,

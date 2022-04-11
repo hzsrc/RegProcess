@@ -2,6 +2,7 @@
   "Items": [
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "\\r",
       "Pattern": "\\r",
       "RepalceTo": "",
@@ -12,6 +13,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "\\);\\r\\n",
       "Pattern": "\\);(\\r\\n\\s*script\\.Append\\()",
       "RepalceTo": "\r\n + ",
@@ -22,6 +24,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "\"\\r\\n+\"",
       "Pattern": "\"\\r\\n\\s*\\+\\s*\"",
       "RepalceTo": "  ",
@@ -32,6 +35,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "add @\"",
       "Pattern": "\\+ \"",
       "RepalceTo": "+ @\"",
@@ -42,6 +46,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "\\\\n",
       "Pattern": "\\\\n",
       "RepalceTo": "\\r\\n",
@@ -52,6 +57,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "\\\\t",
       "Pattern": "\\\\t",
       "RepalceTo": "    ",
@@ -62,6 +68,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "^script.Append",
       "Pattern": "^(\\s*script.Append\\()\"",
       "RepalceTo": "$1@\"",
@@ -72,6 +79,7 @@
     },
     {
       "Disabled": false,
+      "NoReg": false,
       "Title": "->\"",
       "Pattern": "^([^\"]+[^@])\"",
       "RepalceTo": "$1@\"",
@@ -82,5 +90,5 @@
     }
   ],
   "Title": "多行文本",
-  "Order": 2
+  "Order": 3
 }

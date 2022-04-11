@@ -76,7 +76,7 @@ namespace RegProcess
             }
             return s;
         }
-        internal void ResetFeature()
+        public void ResetFeature()
         {
             _lastFeature = "";
         }
